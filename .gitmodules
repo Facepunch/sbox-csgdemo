@@ -1,0 +1,3 @@
+[submodule "code/sbox-csg"]
+	path = code/sbox-csg
+	url = git@github.com:Facepunch/sbox-csg.git
