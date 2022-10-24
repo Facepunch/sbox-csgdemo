@@ -1,0 +1,35 @@
+{
+  "Title": "CSG Demo",
+  "Type": "game",
+  "Org": "facepunch",
+  "Ident": "csgdemo",
+  "Schema": 1,
+  "HasAssets": true,
+  "AssetsPath": "",
+  "ResourcePaths": [],
+  "HasCode": true,
+  "CodePath": "/code/",
+  "RootNamespace": null,
+  "Metadata": {
+    "MaxPlayers": 1,
+    "MinPlayers": 1,
+    "GameNetworkType": "Multiplayer",
+    "MapSelect": "Unrestricted",
+    "MapList": [
+      "facepunch.flatgrass"
+    ],
+    "RankType": "None",
+    "PerMapRanking": false,
+    "LeaderboardType": "None",
+    "ProjectTemplate": null,
+    "GameCategory": "None",
+    "Compiler": {
+      "RootNamespace": "CsgDemo",
+      "DefineConstants": "SANDBOX;ADDON;DEBUG",
+      "NoWarn": "1701;1702;1591;"
+    },
+    "ControlModes": {
+      "Keyboard": true
+    }
+  }
+}
