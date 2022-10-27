@@ -23,6 +23,7 @@ public partial class MyGame : Sandbox.Game
 	[Net]
 	public CsgSolid CsgWorld { get; private set; }
 	public CsgBrush CubeBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/cube.csg" );
+	public CsgBrush DodecahedronBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/dodecahedron.csg" );
 
 	public MyGame()
     {
@@ -70,7 +71,7 @@ public partial class MyGame : Sandbox.Game
 			position: Vector3.Up * 512f,
 			scale: new Vector3( 8192f, 8192f, 1024f ) );
 
-		CsgWorld.Modify( CubeBrush,
+		CsgWorld.Modify( DodecahedronBrush,
 			CsgOperator.Subtract,
 			position: Vector3.Up * 1024f,
 			scale: new Vector3( 1024f, 1024f, 512f ),

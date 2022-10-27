@@ -1,0 +1,62 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	data = 
+	{
+		ConvexSolids = 
+		[
+			{
+				Planes =
+                [
+                    {
+                        Normal = "0,0,1"
+                        Distance = "-0.5"
+                    },
+                    {
+                        Normal = "0,0,-1"
+                        Distance = "-0.5"
+                    },
+                    {
+                        Normal = "0,-0.8660254,-0.5"
+                        Distance = "-0.5"
+                    },
+                    {
+                        Normal = "0,0.8660254,0.5"
+                        Distance = "-0.5"
+                    },
+                    {
+                        Normal = "-0.8236391,-0.2676166,-0.5"
+                        Distance = "-0.5"
+                    },
+                    {
+                        Normal = "0.8236391,0.2676166,0.5"
+                        Distance = "-0.5"
+                    },
+                    {
+                        Normal = "-0.509037,0.7006293,-0.5"
+                        Distance = "-0.5"
+                    },
+                    {
+                        Normal = "0.509037,-0.7006294,0.5"
+                        Distance = "-0.5"
+                    },
+                    {
+                        Normal = "0.509037,0.7006293,-0.5"
+                        Distance = "-0.5"
+                    },
+                    {
+                        Normal = "-0.509037,-0.7006293,0.5"
+                        Distance = "-0.5"
+                    },
+                    {
+                        Normal = "0.8236392,-0.2676165,-0.5"
+                        Distance = "-0.5000001"
+                    },
+                    {
+                        Normal = "-0.8236392,0.2676165,0.5"
+                        Distance = "-0.5000001"
+                    },
+                ]
+			},
+		]
+	}
+}
