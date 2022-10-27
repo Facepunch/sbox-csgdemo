@@ -72,17 +72,14 @@ partial class Player : Sandbox.Player
 
 		if ( !IsServer ) return;
 		
-		if ( Input.Pressed( InputButton.PrimaryAttack ) )
+		if ( Input.Pressed( InputButton.PrimaryAttack ) || Input.Pressed( InputButton.SecondaryAttack ) )
 		{
 			var ray = new Ray( EyePosition, EyeRotation.Forward );
+			var add = Input.Pressed( InputButton.SecondaryAttack );
 
-			if ( Trace.Ray( ray, 8192f )
-				    .Ignore( this )
-				    .Run() is { Hit: true, Entity: CsgSolid solid, HitPosition: var pos } )
+			if ( Trace.Ray( ray, 8192f ).Ignore( this ).Run() is { Hit: true, Entity: CsgSolid solid, HitPosition: var pos } )
 			{
-				Log.Info( "Hit!" );
-
-				solid.Modify( CsgDemoGame.Current.DodecahedronBrush, CsgOperator.Subtract, pos, Random.Shared.NextSingle() * 128f + 128f, Rotation.Random );
+				solid.Modify( CsgDemoGame.Current.DodecahedronBrush, add ? CsgOperator.Add : CsgOperator.Subtract, pos, (Random.Shared.NextSingle() * 128f + 128f) * (add ? 0.5f : 1f), Rotation.Random );
 			}
 		}
 	}
