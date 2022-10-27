@@ -20,7 +20,9 @@ namespace Sandbox;
 /// </summary>
 public partial class MyGame : Sandbox.Game
 {
+	[Net]
 	public CsgSolid CsgWorld { get; private set; }
+	public CsgBrush CubeBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/cube.csg" );
 
 	public MyGame()
     {
@@ -32,6 +34,11 @@ public partial class MyGame : Sandbox.Game
 	public override void ClientJoined( Client client )
 	{
 		base.ClientJoined( client );
+
+		if ( CsgWorld == null )
+		{
+			SpawnWorld();
+		}
 
 		// Create a pawn for this client to play with
 		var pawn = new Pawn();
@@ -47,27 +54,26 @@ public partial class MyGame : Sandbox.Game
 		if ( randomSpawnPoint != null )
 		{
 			var tx = randomSpawnPoint.Transform;
-			tx.Position = tx.Position + Vector3.Up * 50.0f; // raise it up
+			tx.Position = tx.Position + Vector3.Up * 2048.0f; // raise it up
 			pawn.Transform = tx;
 		}
 	}
 
-	public override void ClientSpawn()
+	private void SpawnWorld()
 	{
-		base.ClientSpawn();
+		Assert.True( IsServer );
 
-		CsgWorld ??= new CsgSolid();
+		CsgWorld = new CsgSolid();
 
-		CsgWorld.Combine(
-			CsgConvexSolid.CreateCube(
-				new BBox(
-					new Vector3( -4096f, -4096f, 1024f ),
-					new Vector3( 4096f, 4096f, 2048f ) ) ),
-			CsgOperator.Add );
+		CsgWorld.Modify( CubeBrush,
+			CsgOperator.Add,
+			position: Vector3.Up * 512f,
+			scale: new Vector3( 8192f, 8192f, 1024f ) );
 
-		CsgWorld.Combine(
-			CsgConvexSolid.CreateDodecahedron(
-				Vector3.Up * 2048f, 512f ),
-			CsgOperator.Subtract );
+		CsgWorld.Modify( CubeBrush,
+			CsgOperator.Subtract,
+			position: Vector3.Up * 1024f,
+			scale: new Vector3( 1024f, 1024f, 512f ),
+			rotation: Rotation.FromYaw( 45f ) );
 	}
 }
