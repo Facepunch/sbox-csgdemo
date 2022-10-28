@@ -79,5 +79,68 @@ public partial class CsgDemoGame : Sandbox.Game
             position: Vector3.Up * 1024f,
             scale: new Vector3( 1024f, 1024f, 512f ),
             rotation: Rotation.FromYaw( 45f ) );
+
+        BuildHouse( Vector3.Up * 768f );
+    }
+
+    private void AddCube( Vector3 min, Vector3 max )
+    {
+	    CsgWorld.Add( CubeBrush, DefaultMaterial, (min + max) * 0.5f, max - min );
+	}
+
+    private void SubtractCube( Vector3 min, Vector3 max )
+    {
+	    CsgWorld.Subtract( CubeBrush, (min + max) * 0.5f, max - min );
+    }
+
+	private void BuildHouse( Vector3 floorPos )
+    {
+	    const float width = 384f;
+	    const float depth = 256f;
+	    const float floorHeight = 128f;
+	    const float windowHeight = 64f;
+	    const float windowWidth = 128f;
+		const float windowFloorOffset = 32f;
+		const float wallThickness = 16f;
+	    const int floorCount = 4;
+
+	    AddCube(
+		    floorPos - new Vector3( width * 0.5f, depth * 0.5f, 0f ),
+		    floorPos + new Vector3( width * 0.5f, depth * 0.5f, floorHeight * floorCount ) );
+
+	    Vector3 windowPos;
+
+	    for ( var i = 0; i < floorCount; ++i )
+	    {
+		    SubtractCube(
+			    floorPos - new Vector3( width * 0.5f - wallThickness, depth * 0.5f - wallThickness, 0f ),
+			    floorPos + new Vector3( width * 0.5f - wallThickness, depth * 0.5f - wallThickness, floorHeight - wallThickness ) );
+
+		    windowPos = floorPos + new Vector3( -width * 0.25f, (depth - wallThickness) * 0.5f, windowFloorOffset );
+
+		    SubtractCube(
+			    windowPos - new Vector3( windowWidth * 0.5f, wallThickness * 0.5f, 0f ),
+			    windowPos + new Vector3( windowWidth * 0.5f, wallThickness * 0.5f, windowHeight ) );
+
+		    windowPos = floorPos + new Vector3( width * 0.25f, (depth - wallThickness) * 0.5f, windowFloorOffset );
+
+		    SubtractCube(
+			    windowPos - new Vector3( windowWidth * 0.5f, wallThickness * 0.5f, 0f ),
+			    windowPos + new Vector3( windowWidth * 0.5f, wallThickness * 0.5f, windowHeight ) );
+
+		    windowPos = floorPos + new Vector3( -width * 0.25f, -(depth - wallThickness) * 0.5f, windowFloorOffset );
+
+		    SubtractCube(
+			    windowPos - new Vector3( windowWidth * 0.5f, wallThickness * 0.5f, 0f ),
+			    windowPos + new Vector3( windowWidth * 0.5f, wallThickness * 0.5f, windowHeight ) );
+
+		    windowPos = floorPos + new Vector3( width * 0.25f, -(depth - wallThickness) * 0.5f, windowFloorOffset );
+
+		    SubtractCube(
+			    windowPos - new Vector3( windowWidth * 0.5f, wallThickness * 0.5f, 0f ),
+			    windowPos + new Vector3( windowWidth * 0.5f, wallThickness * 0.5f, windowHeight ) );
+
+			floorPos += Vector3.Up * floorHeight;
+		}
     }
 }

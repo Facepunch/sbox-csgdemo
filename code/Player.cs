@@ -80,7 +80,7 @@ partial class Player : Sandbox.Player
             if ( Trace.Ray( ray, 8192f ).Ignore( this ).Run() is { Hit: true, Entity: CsgSolid solid, HitPosition: var pos } )
             {
                 var rotation = Rotation.Random;
-                var scale = Random.Shared.NextSingle() * 128f + 128f;
+                var scale = Random.Shared.NextSingle() * 16f + 88f;
 
                 if ( add )
                 {
