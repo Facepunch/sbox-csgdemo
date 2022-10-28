@@ -17,67 +17,67 @@ namespace CsgDemo;
 /// </summary>
 public partial class CsgDemoGame : Sandbox.Game
 {
-	public new static CsgDemoGame Current => Sandbox.Game.Current as CsgDemoGame;
+    public new static CsgDemoGame Current => Sandbox.Game.Current as CsgDemoGame;
 
-	public CsgBrush CubeBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/cube.csg" );
-	public CsgBrush DodecahedronBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/dodecahedron.csg" );
+    public CsgBrush CubeBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/cube.csg" );
+    public CsgBrush DodecahedronBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/dodecahedron.csg" );
 
-	public CsgMaterial DefaultMaterial { get; } = ResourceLibrary.Get<CsgMaterial>( "materials/csgdemo/default.csgmat" );
-	public CsgMaterial RedMaterial { get; } = ResourceLibrary.Get<CsgMaterial>( "materials/csgdemo/red.csgmat" );
+    public CsgMaterial DefaultMaterial { get; } = ResourceLibrary.Get<CsgMaterial>( "materials/csgdemo/default.csgmat" );
+    public CsgMaterial RedMaterial { get; } = ResourceLibrary.Get<CsgMaterial>( "materials/csgdemo/red.csgmat" );
 
-	[Net]
-	public CsgSolid CsgWorld { get; private set; }
+    [Net]
+    public CsgSolid CsgWorld { get; private set; }
 
-	public CsgDemoGame()
+    public CsgDemoGame()
     {
-	}
+    }
 
-	/// <summary>
-	/// A client has joined the server. Make them a pawn to play with
-	/// </summary>
-	public override void ClientJoined( Client client )
-	{
-		base.ClientJoined( client );
+    /// <summary>
+    /// A client has joined the server. Make them a pawn to play with
+    /// </summary>
+    public override void ClientJoined( Client client )
+    {
+        base.ClientJoined( client );
 
-		if ( CsgWorld == null )
-		{
-			SpawnWorld();
-		}
+        if ( CsgWorld == null )
+        {
+            SpawnWorld();
+        }
 
-		// Create a pawn for this client to play with
-		var pawn = new Player( client );
-		client.Pawn = pawn;
-		pawn.Respawn();
+        // Create a pawn for this client to play with
+        var pawn = new Player( client );
+        client.Pawn = pawn;
+        pawn.Respawn();
 
-		// Get all of the spawnpoints
-		var spawnpoints = Entity.All.OfType<SpawnPoint>();
+        // Get all of the spawnpoints
+        var spawnpoints = Entity.All.OfType<SpawnPoint>();
 
-		// chose a random one
-		var randomSpawnPoint = spawnpoints.OrderBy( x => Guid.NewGuid() ).FirstOrDefault();
+        // chose a random one
+        var randomSpawnPoint = spawnpoints.OrderBy( x => Guid.NewGuid() ).FirstOrDefault();
 
-		// if it exists, place the pawn there
-		if ( randomSpawnPoint != null )
-		{
-			var tx = randomSpawnPoint.Transform;
-			tx.Position = tx.Position + Vector3.Up * 2048.0f; // raise it up
-			pawn.Transform = tx;
-		}
-	}
+        // if it exists, place the pawn there
+        if ( randomSpawnPoint != null )
+        {
+            var tx = randomSpawnPoint.Transform;
+            tx.Position = tx.Position + Vector3.Up * 2048.0f; // raise it up
+            pawn.Transform = tx;
+        }
+    }
 
-	private void SpawnWorld()
-	{
-		Assert.True( IsServer );
+    private void SpawnWorld()
+    {
+        Assert.True( IsServer );
 
-		CsgWorld = new CsgSolid();
+        CsgWorld = new CsgSolid();
 
-		CsgWorld.Add( CubeBrush,
-			DefaultMaterial,
-			position: Vector3.Up * 512f,
-			scale: new Vector3( 8192f, 8192f, 1024f ) );
+        CsgWorld.Add( CubeBrush,
+            DefaultMaterial,
+            position: Vector3.Up * 512f,
+            scale: new Vector3( 8192f, 8192f, 1024f ) );
 
-		CsgWorld.Subtract( DodecahedronBrush,
-			position: Vector3.Up * 1024f,
-			scale: new Vector3( 1024f, 1024f, 512f ),
-			rotation: Rotation.FromYaw( 45f ) );
-	}
+        CsgWorld.Subtract( DodecahedronBrush,
+            position: Vector3.Up * 1024f,
+            scale: new Vector3( 1024f, 1024f, 512f ),
+            rotation: Rotation.FromYaw( 45f ) );
+    }
 }
