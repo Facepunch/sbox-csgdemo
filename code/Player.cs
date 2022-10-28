@@ -79,7 +79,18 @@ partial class Player : Sandbox.Player
 
 			if ( Trace.Ray( ray, 8192f ).Ignore( this ).Run() is { Hit: true, Entity: CsgSolid solid, HitPosition: var pos } )
 			{
-				solid.Modify( CsgDemoGame.Current.DodecahedronBrush, add ? CsgOperator.Add : CsgOperator.Subtract, pos, (Random.Shared.NextSingle() * 128f + 128f) * (add ? 0.5f : 1f), Rotation.Random );
+				var rotation = Rotation.Random;
+				var scale = Random.Shared.NextSingle() * 128f + 128f;
+
+				if ( add )
+				{
+					solid.Add( CsgDemoGame.Current.CubeBrush, CsgDemoGame.Current.DefaultMaterial, pos, scale, rotation );
+				}
+				else
+				{
+					solid.Subtract( CsgDemoGame.Current.DodecahedronBrush, pos, scale, rotation );
+					solid.Paint( CsgDemoGame.Current.DodecahedronBrush, CsgDemoGame.Current.RedMaterial, pos, scale + 16f, rotation );
+				}
 			}
 		}
 	}

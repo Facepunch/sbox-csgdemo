@@ -22,6 +22,9 @@ public partial class CsgDemoGame : Sandbox.Game
 	public CsgBrush CubeBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/cube.csg" );
 	public CsgBrush DodecahedronBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/dodecahedron.csg" );
 
+	public CsgMaterial DefaultMaterial { get; } = ResourceLibrary.Get<CsgMaterial>( "materials/csgdemo/default.csgmat" );
+	public CsgMaterial RedMaterial { get; } = ResourceLibrary.Get<CsgMaterial>( "materials/csgdemo/red.csgmat" );
+
 	[Net]
 	public CsgSolid CsgWorld { get; private set; }
 
@@ -67,13 +70,12 @@ public partial class CsgDemoGame : Sandbox.Game
 
 		CsgWorld = new CsgSolid();
 
-		CsgWorld.Modify( CubeBrush,
-			CsgOperator.Add,
+		CsgWorld.Add( CubeBrush,
+			DefaultMaterial,
 			position: Vector3.Up * 512f,
 			scale: new Vector3( 8192f, 8192f, 1024f ) );
 
-		CsgWorld.Modify( DodecahedronBrush,
-			CsgOperator.Subtract,
+		CsgWorld.Subtract( DodecahedronBrush,
 			position: Vector3.Up * 1024f,
 			scale: new Vector3( 1024f, 1024f, 512f ),
 			rotation: Rotation.FromYaw( 45f ) );
