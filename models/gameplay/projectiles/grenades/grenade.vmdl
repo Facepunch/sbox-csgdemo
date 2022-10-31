@@ -79,8 +79,8 @@
 						remaps = 
 						[
 							{
-								from = "models/gameplay/textures/textureatlas.vmat"
-								to = "models/gameplay/textures/textureatlas_lightgreen.vmat"
+								from = "material.001.vmat"
+								to = "materials/shiny_white.vmat"
 							},
 						]
 						use_global_default = false

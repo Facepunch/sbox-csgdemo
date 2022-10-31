@@ -102,7 +102,7 @@ public partial class CsgDemoGame : Sandbox.Game
         }
 
         // Create a pawn for this client to play with
-        var pawn = new Player( client );
+        var pawn = new Player();
         client.Pawn = pawn;
         pawn.Respawn();
 
