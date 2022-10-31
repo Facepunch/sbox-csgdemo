@@ -33,10 +33,67 @@ public partial class CsgDemoGame : Sandbox.Game
     {
     }
 
-    /// <summary>
-    /// A client has joined the server. Make them a pawn to play with
-    /// </summary>
-    public override void ClientJoined( Client client )
+	public static void Explosion( Entity weapon, Entity owner, Vector3 position, float radius, float damage, float forceScale, float ownerDamageScale = 1f )
+	{
+		Sound.FromWorld( "gl.explode", position );
+		Particles.Create( "particles/explosion/barrel_explosion/explosion_barrel.vpcf", position );
+
+		if ( Host.IsClient ) return;
+
+		var overlaps = FindInSphere( position, radius );
+
+		foreach ( var overlap in overlaps )
+		{
+			if ( overlap is not ModelEntity entity || !entity.IsValid() )
+				continue;
+
+			if ( entity.LifeState != LifeState.Alive )
+				continue;
+
+			if ( !entity.PhysicsBody.IsValid() )
+				continue;
+
+			if ( entity.IsWorld )
+				continue;
+
+			var targetPos = entity.PhysicsBody.MassCenter;
+
+			var dist = Vector3.DistanceBetween( position, targetPos );
+			if ( dist > radius )
+				continue;
+
+			var tr = Trace.Ray( position, targetPos )
+				.Ignore( weapon )
+				.WorldOnly()
+				.Run();
+
+			if ( tr.Fraction < 0.98f )
+				continue;
+
+			var distanceMul = 1.0f - Math.Clamp( dist / radius, 0.0f, 1.0f );
+			var dmg = damage * distanceMul;
+			var force = (forceScale * distanceMul) * entity.PhysicsBody.Mass;
+			var forceDir = (targetPos - position).Normal;
+
+			if ( overlap == owner )
+			{
+				dmg *= ownerDamageScale;
+				forceDir = (targetPos - (position + Vector3.Down * 32f)).Normal;
+			}
+
+			var damageInfo = DamageInfo.Explosion( position, forceDir * force, dmg )
+				.WithFlag( DamageFlags.Blast )
+				.WithWeapon( weapon )
+				.WithAttacker( owner );
+
+			entity.TakeDamage( damageInfo );
+		}
+	}
+
+	/// <summary>
+	/// A client has joined the server. Make them a pawn to play with
+	/// </summary>
+	public override void ClientJoined( Client client )
     {
         base.ClientJoined( client );
 
