@@ -12,35 +12,39 @@ partial class Player : Sandbox.Player
 
 	public Player()
 	{
-
-	}
-
-    public Player( Client cl ) : base()
-    {
-        Clothing.LoadFromClient( cl );
-	}
-
-	public override void Spawn()
-	{
 		Projectiles = new( this );
 		Inventory = new BaseInventory( this );
-
-		base.Spawn();
 	}
 
-	public override void ClientSpawn()
+	public override void BuildInput()
 	{
-		Projectiles = new( this );
-		Inventory = new BaseInventory( this );
+		InputDirection = Input.AnalogMove;
 
-		base.ClientSpawn();
+		if ( ViewAngles.pitch > 90f || ViewAngles.pitch < -90f )
+		{
+			var look = Input.AnalogLook;
+			Input.AnalogLook = look.WithYaw( look.yaw * -1f );
+		}
+
+		var viewAngles = ViewAngles;
+		viewAngles += Input.AnalogLook;
+		viewAngles.pitch = viewAngles.pitch.Clamp( -89f, 89f );
+		viewAngles.roll = 0f;
+		ViewAngles = viewAngles.Normal;
+
+		ActiveChild?.BuildInput();
+
+		GetActiveController()?.BuildInput();
+		GetActiveAnimator()?.BuildInput();
 	}
 
 	public override void Respawn()
     {
         SetModel( "models/citizen/citizen.vmdl" );
 
-        Controller = new WalkController();
+		LifeState = LifeState.Alive;
+
+		Controller = new WalkController();
         Animator = new StandardPlayerAnimator();
         CameraMode = new FirstPersonCamera();
 
@@ -52,6 +56,8 @@ partial class Player : Sandbox.Player
         EnableShadowInFirstPerson = true;
 
 		Inventory.Add( new GrenadeLauncher(), true );
+
+		Clothing.LoadFromClient( Client );
 
 		base.Respawn();
     }
@@ -68,10 +74,9 @@ partial class Player : Sandbox.Player
     
     public override void Simulate( Client cl )
     {
-		Projectiles.Simulate();
-
 		base.Simulate( cl );
 
+		Projectiles.Simulate();
 		SimulateActiveChild( cl, ActiveChild );
 
         if ( Input.Pressed( InputButton.Jump ) )
@@ -93,6 +98,7 @@ partial class Player : Sandbox.Player
 
         if ( !IsServer ) return;
         
+		/*
         if ( Input.Pressed( InputButton.PrimaryAttack ) || Input.Pressed( InputButton.SecondaryAttack ) )
         {
             var ray = new Ray( EyePosition, EyeRotation.Forward );
@@ -120,5 +126,6 @@ partial class Player : Sandbox.Player
                 }
             }
         }
+		*/
     }
 }
