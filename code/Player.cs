@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Sandbox;
 using Sandbox.Csg;
 
@@ -8,26 +7,42 @@ namespace CsgDemo;
 partial class Player : Sandbox.Player
 {
     public ClothingContainer Clothing { get; } = new();
+	public ProjectileSimulator Projectiles { get; private set; }
+	public TimeSince LastJump { get; private set; }
 
-    public TimeSince LastJump { get; private set; }
+	public Player()
+	{
 
-    public Player()
-    {
+	}
 
-    }
-
-    public Player( Client cl )
+    public Player( Client cl ) : base()
     {
         Clothing.LoadFromClient( cl );
-    }
+	}
 
-    public override void Respawn()
+	public override void Spawn()
+	{
+		Projectiles = new( this );
+		Inventory = new BaseInventory( this );
+
+		base.Spawn();
+	}
+
+	public override void ClientSpawn()
+	{
+		Projectiles = new( this );
+		Inventory = new BaseInventory( this );
+
+		base.ClientSpawn();
+	}
+
+	public override void Respawn()
     {
         SetModel( "models/citizen/citizen.vmdl" );
 
         Controller = new WalkController();
         Animator = new StandardPlayerAnimator();
-        CameraMode = new ThirdPersonCamera();
+        CameraMode = new FirstPersonCamera();
 
         Clothing.DressEntity( this );
 
@@ -35,8 +50,10 @@ partial class Player : Sandbox.Player
         EnableDrawing = true;
         EnableHideInFirstPerson = true;
         EnableShadowInFirstPerson = true;
-        
-        base.Respawn();
+
+		Inventory.Add( new GrenadeLauncher(), true );
+
+		base.Respawn();
     }
 
     public override void OnKilled()
@@ -51,7 +68,11 @@ partial class Player : Sandbox.Player
     
     public override void Simulate( Client cl )
     {
-        base.Simulate( cl );
+		Projectiles.Simulate();
+
+		base.Simulate( cl );
+
+		SimulateActiveChild( cl, ActiveChild );
 
         if ( Input.Pressed( InputButton.Jump ) )
         {
