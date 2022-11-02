@@ -68,22 +68,18 @@ public partial class CsgDemoGame : Sandbox.Game
     {
         Assert.True( IsServer );
 
-        CsgWorld = new CsgSolid
-        {
-            GridSize = 512f
-        };
+        CsgWorld = new CsgSolid( 1024f );
 
         CsgWorld.Add( CubeBrush,
             DefaultMaterial,
-            position: Vector3.Up * 512f,
             scale: new Vector3( 8192f, 8192f, 1024f ) );
 
         CsgWorld.Subtract( DodecahedronBrush,
-            position: Vector3.Up * 1024f,
+            position: Vector3.Up * 512f,
             scale: new Vector3( 1024f, 1024f, 512f ),
             rotation: Rotation.FromYaw( 45f ) );
 
-        BuildHouse( Vector3.Up * 768f );
+        BuildHouse( Vector3.Up * 256f );
     }
 
     private void AddCube( Vector3 min, Vector3 max )
