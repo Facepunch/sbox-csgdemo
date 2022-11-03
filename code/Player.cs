@@ -90,7 +90,6 @@ partial class Player : Sandbox.Player
                 {
                     solid.Subtract( CsgDemoGame.Current.DodecahedronBrush, pos, scale, rotation );
                     solid.Paint( CsgDemoGame.Current.DodecahedronBrush, CsgDemoGame.Current.RedMaterial, pos, scale + 16f, rotation );
-                    solid.Disconnect();
                 }
             }
         }
