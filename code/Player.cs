@@ -77,19 +77,25 @@ partial class Player : Sandbox.Player
             var ray = new Ray( EyePosition, EyeRotation.Forward );
             var add = Input.Pressed( InputButton.SecondaryAttack );
 
-            if ( Trace.Ray( ray, 8192f ).Ignore( this ).Run() is { Hit: true, Entity: CsgSolid solid, HitPosition: var pos } )
+            if ( Trace.Ray( ray, 8192f ).Ignore( this ).Run() is { Hit: true, HitPosition: var pos } hit )
             {
                 var rotation = Rotation.Random;
                 var scale = Random.Shared.NextSingle() * 16f + 88f;
 
                 if ( add )
                 {
-                    solid.Add( CsgDemoGame.Current.CubeBrush, CsgDemoGame.Current.DefaultMaterial, pos, scale, rotation );
+                    if ( hit.Entity is CsgSolid solid )
+                    {
+                        solid.Add( CsgDemoGame.Current.CubeBrush, CsgDemoGame.Current.DefaultMaterial, pos, scale, rotation );
+                    }
                 }
                 else
                 {
-                    solid.Subtract( CsgDemoGame.Current.DodecahedronBrush, pos, scale, rotation );
-                    solid.Paint( CsgDemoGame.Current.DodecahedronBrush, CsgDemoGame.Current.RedMaterial, pos, scale + 16f, rotation );
+                    foreach ( var solid in Entity.All.OfType<CsgSolid>() )
+                    {
+                        solid.Subtract( CsgDemoGame.Current.DodecahedronBrush, pos, scale, rotation );
+                        solid.Paint( CsgDemoGame.Current.DodecahedronBrush, CsgDemoGame.Current.RedMaterial, pos, scale + 16f, rotation );
+                    }
                 }
             }
         }
