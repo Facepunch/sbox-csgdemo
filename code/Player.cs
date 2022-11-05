@@ -16,27 +16,27 @@ partial class Player : Sandbox.Player
 		Inventory = new BaseInventory( this );
 	}
 
-	public override void BuildInput()
-	{
-		InputDirection = Input.AnalogMove;
+	//public override void BuildInput()
+	//{
+	//	InputDirection = Input.AnalogMove;
 
-		if ( ViewAngles.pitch > 90f || ViewAngles.pitch < -90f )
-		{
-			var look = Input.AnalogLook;
-			Input.AnalogLook = look.WithYaw( look.yaw * -1f );
-		}
+	//	if ( ViewAngles.pitch > 90f || ViewAngles.pitch < -90f )
+	//	{
+	//		var look = Input.AnalogLook;
+	//		Input.AnalogLook = look.WithYaw( look.yaw * -1f );
+	//	}
 
-		var viewAngles = ViewAngles;
-		viewAngles += Input.AnalogLook;
-		viewAngles.pitch = viewAngles.pitch.Clamp( -89f, 89f );
-		viewAngles.roll = 0f;
-		ViewAngles = viewAngles.Normal;
+	//	var viewAngles = ViewAngles;
+	//	viewAngles += Input.AnalogLook;
+	//	viewAngles.pitch = viewAngles.pitch.Clamp( -89f, 89f );
+	//	viewAngles.roll = 0f;
+	//	ViewAngles = viewAngles.Normal;
 
-		ActiveChild?.BuildInput();
+	//	ActiveChild?.BuildInput();
 
-		GetActiveController()?.BuildInput();
-		GetActiveAnimator()?.BuildInput();
-	}
+	//	GetActiveController()?.BuildInput();
+	//	GetActiveAnimator()?.BuildInput();
+	//}
 
 	public override void Respawn()
     {
