@@ -98,8 +98,6 @@ partial class GrenadeLauncher : BulletDropWeapon<GrenadeProjectile>
 					solid.Subtract( CsgDemoGame.Current.DodecahedronBrush, pos, scale, rotation );
 					solid.Paint( CsgDemoGame.Current.DodecahedronBrush, CsgDemoGame.Current.RedMaterial, pos, scale + 8f, rotation );
 				}
-
-				solid.Disconnect();
 			}
 		}
 	}
