@@ -13,12 +13,12 @@ partial class GrenadeLauncher : BulletDropWeapon<GrenadeProjectile>
 
 	public override string ProjectileModel => "models/gameplay/projectiles/grenades/grenade.vmdl";
 	public override string TrailEffect => "particles/grenade.vpcf";
-	public override float ProjectileLifeTime => 1.5f;
+	public override float? ProjectileLifeTime => null;
 	public override float Spread => 0.0f;
 	public override string HitSound => "gl.impact";
 	public override float Gravity => 30f;
 	public override float Speed => 1300f;
-	public override float PrimaryRate => 1.15f;
+	public override float PrimaryRate => 10f;
 	public override AmmoType AmmoType => AmmoType.Grenade;
 	
 	public override void Spawn()
@@ -76,7 +76,7 @@ partial class GrenadeLauncher : BulletDropWeapon<GrenadeProjectile>
 				.Ignore( projectile )
 				.Run();
 
-			if ( tr is { Hit: true, Entity: CsgSolid solid } )
+			if ( tr is { Hit: true } )
 			{
 				var rotation = Rotation.Random;
 				var scale = Random.Shared.NextSingle() * 32f + 96f;
@@ -84,8 +84,11 @@ partial class GrenadeLauncher : BulletDropWeapon<GrenadeProjectile>
 
 				//DebugOverlay.Sphere( pos, scale, Color.Random, 10f );
 
-				solid.Subtract( CsgDemoGame.Current.DodecahedronBrush, pos, scale, rotation );
-				solid.Paint( CsgDemoGame.Current.DodecahedronBrush, CsgDemoGame.Current.RedMaterial, pos, scale + 8f, rotation );
+                foreach ( var solid in All.OfType<CsgSolid>() )
+                {
+                    solid.Subtract( CsgDemoGame.Current.DodecahedronBrush, pos, scale, rotation );
+                    solid.Paint( CsgDemoGame.Current.DodecahedronBrush, CsgDemoGame.Current.ScorchedMaterial, pos, scale + 8f, rotation );
+                }
 
 				for ( var i = 0; i < 8; i++ )
 				{
@@ -93,10 +96,13 @@ partial class GrenadeLauncher : BulletDropWeapon<GrenadeProjectile>
 					scale = Random.Shared.NextSingle() * 64f + 16f;
 					pos = projectile.Position + Vector3.Random * scale;
 
-					//DebugOverlay.Sphere( pos, scale, Color.Random, 10f );
+                    //DebugOverlay.Sphere( pos, scale, Color.Random, 10f );
 
-					solid.Subtract( CsgDemoGame.Current.DodecahedronBrush, pos, scale, rotation );
-					solid.Paint( CsgDemoGame.Current.DodecahedronBrush, CsgDemoGame.Current.RedMaterial, pos, scale + 8f, rotation );
+                    foreach ( var solid in All.OfType<CsgSolid>() )
+                    {
+                        solid.Subtract( CsgDemoGame.Current.DodecahedronBrush, pos, scale, rotation );
+                        solid.Paint( CsgDemoGame.Current.DodecahedronBrush, CsgDemoGame.Current.ScorchedMaterial, pos, scale + 8f, rotation );
+                    }
 				}
 			}
 		}

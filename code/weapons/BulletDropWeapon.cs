@@ -7,7 +7,7 @@ public abstract partial class BulletDropWeapon<T> : Weapon where T : BulletDropP
 {
 	public virtual string ProjectileModel => "";
 	public virtual float ProjectileRadius => 10f;
-	public virtual float ProjectileLifeTime => 10f;
+	public virtual float? ProjectileLifeTime => 10f;
 	public virtual string ImpactEffect => null;
 	public virtual string TrailEffect => null;
 	public virtual string HitSound => null;

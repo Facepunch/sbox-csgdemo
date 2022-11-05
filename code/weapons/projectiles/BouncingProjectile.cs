@@ -13,7 +13,7 @@ public partial class BouncingProjectile : BulletDropProjectile
 
 	protected override void PostSimulate( TraceResult trace )
 	{
-		if ( trace.Hit )
+		if ( trace.Hit && LifeTime.HasValue )
 		{
 			var reflect = Vector3.Reflect( trace.Direction, trace.Normal );
 

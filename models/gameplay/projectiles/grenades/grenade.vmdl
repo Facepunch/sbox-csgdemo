@@ -80,7 +80,7 @@
 						[
 							{
 								from = "material.001.vmat"
-								to = "materials/shiny_white.vmat"
+								to = "materials/default/white.vmat"
 							},
 						]
 						use_global_default = false
