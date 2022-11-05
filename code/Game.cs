@@ -24,6 +24,7 @@ public partial class CsgDemoGame : Sandbox.Game
 
     public CsgMaterial DefaultMaterial { get; } = ResourceLibrary.Get<CsgMaterial>( "materials/csgdemo/default.csgmat" );
     public CsgMaterial RedMaterial { get; } = ResourceLibrary.Get<CsgMaterial>( "materials/csgdemo/red.csgmat" );
+    public CsgMaterial ScorchedMaterial { get; } = ResourceLibrary.Get<CsgMaterial>( "materials/csgdemo/scorched.csgmat" );
 
     [Net]
     public CsgSolid CsgWorld { get; private set; }
@@ -74,12 +75,11 @@ public partial class CsgDemoGame : Sandbox.Game
             DefaultMaterial,
             scale: new Vector3( 8192f, 8192f, 1024f ) );
 
-        CsgWorld.Subtract( DodecahedronBrush,
-            position: Vector3.Up * 512f,
-            scale: new Vector3( 1024f, 1024f, 512f ),
-            rotation: Rotation.FromYaw( 45f ) );
-
-        BuildHouse( Vector3.Up * 256f );
+        for ( var i = -3; i <= 3; ++i )
+        {
+            BuildHouse( new Vector3( i * 512f, 512f, 512f ), Rand.Int( 2, 10 ) );
+            BuildHouse( new Vector3( i * 512f, -512f, 512f ), Rand.Int( 2, 10 ) );
+        }
     }
 
     private void AddCube( Vector3 min, Vector3 max )
@@ -92,7 +92,7 @@ public partial class CsgDemoGame : Sandbox.Game
         CsgWorld.Subtract( CubeBrush, (min + max) * 0.5f, max - min );
     }
 
-    private void BuildHouse( Vector3 floorPos )
+    private void BuildHouse( Vector3 floorPos, int floorCount )
     {
         const float width = 384f;
         const float depth = 256f;
@@ -101,7 +101,6 @@ public partial class CsgDemoGame : Sandbox.Game
         const float windowWidth = 128f;
         const float windowFloorOffset = 32f;
         const float wallThickness = 16f;
-        const int floorCount = 4;
 
         AddCube(
             floorPos - new Vector3( width * 0.5f, depth * 0.5f, 0f ),
