@@ -21,6 +21,7 @@ public partial class CsgDemoGame : Sandbox.Game
 
     public CsgBrush CubeBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/cube.csg" );
     public CsgBrush DodecahedronBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/dodecahedron.csg" );
+    public CsgBrush TestBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/arch.csg" );
 
     public CsgMaterial DefaultMaterial { get; } = ResourceLibrary.Get<CsgMaterial>( "materials/csgdemo/default.csgmat" );
     public CsgMaterial RedMaterial { get; } = ResourceLibrary.Get<CsgMaterial>( "materials/csgdemo/red.csgmat" );
@@ -28,12 +29,12 @@ public partial class CsgDemoGame : Sandbox.Game
 
     [Net]
     public CsgSolid CsgWorld { get; private set; }
-
+    
     public CsgDemoGame()
     {
     }
-
-	public static void Explosion( Entity weapon, Entity owner, Vector3 position, float radius, float damage, float forceScale, float ownerDamageScale = 1f )
+    
+    public static void Explosion( Entity weapon, Entity owner, Vector3 position, float radius, float damage, float forceScale, float ownerDamageScale = 1f )
 	{
 		Sound.FromWorld( "gl.explode", position );
 		Particles.Create( "particles/explosion/barrel_explosion/explosion_barrel.vpcf", position );
@@ -124,19 +125,41 @@ public partial class CsgDemoGame : Sandbox.Game
 
     private void SpawnWorld()
     {
-        Assert.True( IsServer );
+        Host.AssertServer( nameof( SpawnWorld ) );
+
+        if ( CsgWorld.IsValid() ) return;
+        
+        var sky = new Sky { Skyname = "materials/skybox/light_test_sky_default.vmat" };
+
+        var topLight = new EnvironmentLightEntity
+        {
+            Rotation = global::Rotation.From( 80f, -30f, 0f ),
+            Color = Color.FromRgb( 0xFEECD2 ),
+            Brightness = 5f
+        };
+
+        var bottomLight = new EnvironmentLightEntity
+        {
+            Rotation = global::Rotation.From( -100f, -30f, 0f ),
+            Color = Color.FromRgb( 0xAFC9EF ),
+            Brightness = 1f
+        };
 
         CsgWorld = new CsgSolid( 1024f );
 
-        CsgWorld.Add( CubeBrush,
-            DefaultMaterial,
-            scale: new Vector3( 8192f, 8192f, 1024f ) );
+        AddCube( new Vector3( -8192f, -8192f, -4096f ), new Vector3( 8192f, 8192f, 0f ) );
+        CsgWorld.Add( TestBrush, DefaultMaterial, new Vector3( 0f, 0f, 0f ) );
 
-        for ( var i = -3; i <= 3; ++i )
-        {
-            BuildHouse( new Vector3( i * 512f, 512f, 512f ), Rand.Int( 2, 10 ) );
-            BuildHouse( new Vector3( i * 512f, -512f, 512f ), Rand.Int( 2, 10 ) );
-        }
+        //CsgWorld.Add( CubeBrush,
+        //    DefaultMaterial,
+        //    scale: new Vector3( 8192f, 8192f, 1024f ),
+        //    position: new Vector3( 0f, 0f, -512f ));
+
+        //for ( var i = -3; i <= 3; ++i )
+        //{
+        //    BuildHouse( new Vector3( i * 512f, 512f, 0f ), Rand.Int( 2, 10 ) );
+        //    BuildHouse( new Vector3( i * 512f, -512f, 0f ), Rand.Int( 2, 10 ) );
+        //}
     }
 
     private void AddCube( Vector3 min, Vector3 max )
@@ -196,6 +219,15 @@ public partial class CsgDemoGame : Sandbox.Game
                 windowPos + new Vector3( windowWidth * 0.5f, wallThickness * 0.5f, windowHeight ) );
 
             floorPos += Vector3.Up * floorHeight;
+        }
+    }
+
+    [Event.Tick.Server]
+    private void ServerTick()
+    {
+        foreach ( var debugHull in CsgHull.DebugHulls )
+        {
+            debugHull.DrawGizmos( 0f );
         }
     }
 }

@@ -1,0 +1,265 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	data =
+	{
+		ConvexSolids =
+		[
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-0.24253564,-0.97014254"
+						Distance = -50.447407
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = -128
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -64
+					},
+					{
+						Normal = "1,0,0"
+						Distance = 0
+					},
+					{
+						Normal = "0,-0.44721362,-0.89442724"
+						Distance = -21.466251
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "-0,0.44721362,0.89442724"
+						Distance = 21.466251
+					},
+					{
+						Normal = "0,-0.24253564,-0.97014254"
+						Distance = -50.447407
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "0,-1,0"
+						Distance = -128
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -64
+					},
+					{
+						Normal = "1,0,0"
+						Distance = 0
+					},
+					{
+						Normal = "-0,0.24253564,-0.97014254"
+						Distance = -11.64171
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,0.15205719,-0.9883717"
+						Distance = -96.100136
+					},
+					{
+						Normal = "0,-1,0"
+						Distance = -128
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -64
+					},
+					{
+						Normal = "1,0,0"
+						Distance = 0
+					},
+					{
+						Normal = "-0,0.17888544,-0.9838699"
+						Distance = -93.020424
+					},
+					{
+						Normal = "-0,0.24253564,0.97014254"
+						Distance = 50.447407
+					},
+					{
+						Normal = "-0,0.2873479,0.9578263"
+						Distance = 53.638268
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-0.22485952,-0.9743912"
+						Distance = -130.71832
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = -128
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -64
+					},
+					{
+						Normal = "1,0,0"
+						Distance = 0
+					},
+					{
+						Normal = "0,-0.35112345,-0.9363292"
+						Distance = -110.48684
+					},
+					{
+						Normal = "-0,0.24253564,0.97014254"
+						Distance = 50.447407
+					},
+					{
+						Normal = "-0,-0.24253564,0.97014254"
+						Distance = 104.7754
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,0.22485952,-0.9743912"
+						Distance = -181.08685
+					},
+					{
+						Normal = "0,-1,0"
+						Distance = -128
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -64
+					},
+					{
+						Normal = "1,0,0"
+						Distance = 0
+					},
+					{
+						Normal = "-0,0.2631174,-0.9647638"
+						Distance = -175.41159
+					},
+					{
+						Normal = "-0,-0.15205719,0.9883717"
+						Distance = 96.100136
+					},
+					{
+						Normal = "-0,0.2631174,0.9647638"
+						Distance = 133.31282
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-0.37139067,-0.9284767"
+						Distance = -199.06541
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -256
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = -128
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -64
+					},
+					{
+						Normal = "1,0,0"
+						Distance = 0
+					},
+					{
+						Normal = "-0,-0,1"
+						Distance = 240
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,0,-1"
+						Distance = -240
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = -128
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -64
+					},
+					{
+						Normal = "1,0,0"
+						Distance = 0
+					},
+					{
+						Normal = "0,-0.27472112,-0.96152395"
+						Distance = -204.39252
+					},
+					{
+						Normal = "-0,0.22485952,0.9743912"
+						Distance = 130.71832
+					},
+					{
+						Normal = "-0,-0.35112345,0.9363292"
+						Distance = 189.13849
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "-0,0.37139067,0.9284767"
+						Distance = 199.06541
+					},
+					{
+						Normal = "-0,-0.22485952,0.9743912"
+						Distance = 181.08685
+					},
+					{
+						Normal = "1,0,0"
+						Distance = 0
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -64
+					},
+					{
+						Normal = "0,-1,0"
+						Distance = -128
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -256
+					},
+					{
+						Normal = "-0,0.19611613,0.9805807"
+						Distance = 222.78793
+					},
+				]
+			},
+		]
+	}
+}

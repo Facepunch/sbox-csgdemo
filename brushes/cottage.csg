@@ -1,0 +1,585 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	data =
+	{
+		ConvexSolids =
+		[
+			{
+				Planes =
+				[
+					{
+						Normal = "-1,0,0"
+						Distance = -112
+					},
+					{
+						Normal = "1,0,0"
+						Distance = -112
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "0,-1,0"
+						Distance = -192
+					},
+					{
+						Normal = "-0,1,-0"
+						Distance = 176
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = -192
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "0,-1,-0"
+						Distance = 128
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-1,0"
+						Distance = 64
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = -128
+					},
+					{
+						Normal = "1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "-0,-0,1"
+						Distance = 128
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "-0,1,-0"
+						Distance = -64
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "0,-1,-0"
+						Distance = -0
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "0,-1,0"
+						Distance = -192
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "-0,1,-0"
+						Distance = 128
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-1,0"
+						Distance = -128
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = 0
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "-0,-0,-1"
+						Distance = -64
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-1,0"
+						Distance = -128
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = 0
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "-0,-0,1"
+						Distance = 128
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "-1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "0,-1,0"
+						Distance = -192
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "-0,1,-0"
+						Distance = 128
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-1,0"
+						Distance = -128
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = 32
+					},
+					{
+						Normal = "-1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "-0,-0,-1"
+						Distance = -64
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-1,0"
+						Distance = -128
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = 32
+					},
+					{
+						Normal = "-1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "-0,-0,1"
+						Distance = 128
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = -192
+					},
+					{
+						Normal = "1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "-1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "0,-1,-0"
+						Distance = 128
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-1,-0"
+						Distance = -32
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "-1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "-0,1,-0"
+						Distance = -32
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-1,0"
+						Distance = 32
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = -128
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "-1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "-0,-0,-1"
+						Distance = -64
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-1,0"
+						Distance = 32
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = -128
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "1,0,0"
+						Distance = -128
+					},
+					{
+						Normal = "-1,-0,-0"
+						Distance = 112
+					},
+					{
+						Normal = "-0,-0,1"
+						Distance = 128
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-1,-0"
+						Distance = 176
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = -192
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "1,0,0"
+						Distance = -112
+					},
+					{
+						Normal = "-1,-0,-0"
+						Distance = 32
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "0,-1,-0"
+						Distance = 176
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = -192
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -192
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -112
+					},
+					{
+						Normal = "1,-0,-0"
+						Distance = 32
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "-0,0,1"
+						Distance = 192
+					},
+					{
+						Normal = "0.44721362,0,-0.89442724"
+						Distance = -228.97336
+					},
+					{
+						Normal = "0,1,-0"
+						Distance = -192
+					},
+					{
+						Normal = "-0,-1,0"
+						Distance = -192
+					},
+					{
+						Normal = "-1,-0,-0"
+						Distance = 32
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "-0,0,1"
+						Distance = 192
+					},
+					{
+						Normal = "-0.44721362,-0,-0.89442724"
+						Distance = -228.97336
+					},
+					{
+						Normal = "0,1,-0"
+						Distance = -192
+					},
+					{
+						Normal = "-0,-1,0"
+						Distance = -192
+					},
+					{
+						Normal = "1,-0,-0"
+						Distance = 32
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "-1,0,0"
+						Distance = -32
+					},
+					{
+						Normal = "1,0,0"
+						Distance = -32
+					},
+					{
+						Normal = "-0,0,1"
+						Distance = 192
+					},
+					{
+						Normal = "0.44721362,0,-0.89442724"
+						Distance = -228.97336
+					},
+					{
+						Normal = "-0.44721362,-0,-0.89442724"
+						Distance = -228.97336
+					},
+					{
+						Normal = "-0,-1,0"
+						Distance = -192
+					},
+					{
+						Normal = "-0,1,-0"
+						Distance = -160
+					},
+				]
+			},
+			{
+				Planes =
+				[
+					{
+						Normal = "1,0,0"
+						Distance = -32
+					},
+					{
+						Normal = "-1,0,0"
+						Distance = -32
+					},
+					{
+						Normal = "-0,1,0"
+						Distance = -192
+					},
+					{
+						Normal = "0,-1,0"
+						Distance = 160
+					},
+					{
+						Normal = "0,0,1"
+						Distance = 0
+					},
+					{
+						Normal = "0,0,-1"
+						Distance = -288
+					},
+				]
+			},
+		]
+	}
+}
