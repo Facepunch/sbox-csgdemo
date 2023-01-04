@@ -1,6 +1,5 @@
 ﻿using Sandbox;
 using Sandbox.UI.Construct;
-using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,9 +14,9 @@ namespace CsgDemo;
 /// You can use this to create things like HUDs and declare which player class
 /// to use for spawned players.
 /// </summary>
-public partial class CsgDemoGame : Sandbox.Game
+public partial class CsgDemoGame : GameManager
 {
-    public new static CsgDemoGame Current => Sandbox.Game.Current as CsgDemoGame;
+    public new static CsgDemoGame Current => GameManager.Current as CsgDemoGame;
 
     public CsgBrush CubeBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/cube.csg" );
     public CsgBrush DodecahedronBrush { get; } = ResourceLibrary.Get<CsgBrush>( "brushes/dodecahedron.csg" );
@@ -36,7 +35,7 @@ public partial class CsgDemoGame : Sandbox.Game
     /// <summary>
     /// A client has joined the server. Make them a pawn to play with
     /// </summary>
-    public override void ClientJoined( Client client )
+    public override void ClientJoined( IClient client )
     {
         base.ClientJoined( client );
 
@@ -51,10 +50,10 @@ public partial class CsgDemoGame : Sandbox.Game
         pawn.Respawn();
 
         // Get all of the spawnpoints
-        var spawnpoints = Entity.All.OfType<SpawnPoint>();
+        var spawnpoints = All.OfType<SpawnPoint>();
 
         // chose a random one
-        var randomSpawnPoint = spawnpoints.OrderBy( x => Guid.NewGuid() ).FirstOrDefault();
+        var randomSpawnPoint = spawnpoints.OrderBy( x => System.Guid.NewGuid() ).FirstOrDefault();
 
         // if it exists, place the pawn there
         if ( randomSpawnPoint != null )
@@ -77,8 +76,8 @@ public partial class CsgDemoGame : Sandbox.Game
 
         for ( var i = -3; i <= 3; ++i )
         {
-            BuildHouse( new Vector3( i * 512f, 512f, 512f ), Rand.Int( 2, 10 ) );
-            BuildHouse( new Vector3( i * 512f, -512f, 512f ), Rand.Int( 2, 10 ) );
+            BuildHouse( new Vector3( i * 512f, 512f, 512f ), Random.Int( 2, 10 ) );
+            BuildHouse( new Vector3( i * 512f, -512f, 512f ), Random.Int( 2, 10 ) );
         }
     }
 
